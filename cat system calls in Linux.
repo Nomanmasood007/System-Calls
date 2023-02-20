@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+//system call for the cat command in linux
+// ststem calls vary from operating systems to os
+//this is specific to os
+
+int main(){
+
+char name[10];
+int file_descripter;	//represting the open file
+char buffer[1024];
+
+printf("Enter name of file see the complete data ");
+scanf("%s",name);
+
+file_descripter=open(name,O_RDONLY);  // opening file in read only mode
+
+if(file_descripter<0)
+	printf("Error! File cannot be opened");
+else{
+
+read(file_descripter,buffer,1024);
+printf("%s",buffer);
+}
+
+close(file_descripter);
+
+}
